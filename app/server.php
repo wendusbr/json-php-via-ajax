@@ -1,16 +1,31 @@
 <?php
-    session_start();
+    include('config.php');
 
-    $acao = $_POST['acao'];
+    switch($_POST['acao']){
+        case 'inserir':
+            $nome = $_POST['nome'];
+            $email = $_POST['email'];
+            $corFav = $_POST['corFav'];
 
-    if($acao == 'inserir'){
-        // $_POST['nome']
-        if(!isset($_SESSION['nomes'])){
-            $_SESSION['nomes'] = Array();
-        }
-        $_SESSION['nomes'][] = $_POST['nome'];
-    }
-    else if($acao == 'mostrar'){
-        echo json_encode($_SESSION['nomes']);
+            $sql = "INSERT INTO pessoa(nome, email, cor_fav) VALUES ('{$nome}', '{$email}', '{$corFav}')";
+
+            $result = $conexao->query($sql);
+            break;
+            
+        case 'mostrar':
+            $sql = "SELECT * FROM pessoa";
+            $result = $conexao->query($sql);
+
+            $qtd = $result->num_rows;
+
+            if($qtd){
+                $tuplas['rows'] = Array();
+                while($row = $result->fetch_object()){
+                    $tuplas['rows'][] = $row;
+                }
+
+                echo json_encode($tuplas['rows']);
+            }
+            break;
     }
 ?>

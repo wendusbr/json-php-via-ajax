@@ -5,14 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
 </head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
 <body>
-    <input id="nome" type="text">
-    <button id="btnInserir">Inserir</button>
-
+    <form id="cadastrar" type="submit" style="margin-bottom: 50px;">
+        <input id="nome" type="text" placeholder="Nome">
+        <br>
+        <input id="email" type="email" placeholder="E-mail">
+        <br>
+        <input id="corFav" type="text" placeholder="Cor favorita">
+        <br>
+        <button id="enviar">Enviar</button>
+    </form>
+   
     <button id="btnMostrar">Mostrar</button>
-    <div id="saida" style="border: 1px solid black; padding: 10px;">
-
-    </div>
+    <table>
+        <thead>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Cor favorita</th>
+        </thead>
+        <tbody id="saida">
+            <!-- Insere aqui -->
+        </tbody>
+    </table>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="assets/js/script.js"></script>
